@@ -1,0 +1,63 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class PrimeFactorsEffective {
+    private static int z;
+    private int w = z;
+
+    public static List<Integer> primeFactors(int numbers) {
+        int n = numbers;
+        List<Integer> factors = new ArrayList<Integer>();
+        for (int i = 2; i <= n / i; i++) {
+            while (n % i == 0) {
+                factors.add(i);
+                n /= i;
+            }
+            if (n > 1) {
+                factors.add(n);
+                z = Collections.max(factors);
+            }
+        }
+        return factors;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Primefactors of 72216017");
+        for (Integer integer : primeFactors(72216017)) {
+            System.out.println(integer);
+        }
+        List<Integer> factors1 = new ArrayList<Integer>();
+        List<String> index1 = new ArrayList<String>();
+        int i;
+        int element = 0;
+        int num = 0;
+        int maxCheck = z; // maxCheck limit till which you want to find prime numbers
+        boolean isPrime = true;
+        String primeNumbersFound = "";
+
+
+        //Start loop 1 to maxCheck
+        for (i = 1; i <= maxCheck; i++) {
+            isPrime = CheckPrime(i);
+            if (isPrime) {
+                primeNumbersFound = primeNumbersFound + i + " ";
+                factors1.add(i);
+                factors1.get(num);
+            }
+        }
+        System.out.println("Prime numbers from 1 to " + maxCheck + " are:");
+        System.out.println(factors1);
+    }
+
+    public static boolean CheckPrime(int numberToCheck) {
+        int remainder;
+        for (int i = 2; i <= numberToCheck / 2; i++) {
+            remainder = numberToCheck % i;
+            if (remainder == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
